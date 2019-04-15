@@ -280,7 +280,7 @@ app.post("/users/:userid/avatar", upload.single("avatar"), async (req, res) => {
     const user = await User.findById(req.params.userid); // memeriksa userid di db
     if (!user) {
       // Jika user tidak ada
-      throw Error("Unable to upload");
+      throw new Error("Unable to upload");
     }
     user.avatar = buffer;
     await user.save();
